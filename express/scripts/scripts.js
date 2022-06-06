@@ -1770,6 +1770,34 @@ async function wordBreakJapanese() {
   const { loadDefaultJapaneseParser } = await import('./budoux-index-ja.min.js');
   const parser = loadDefaultJapaneseParser();
   document.querySelectorAll('h1, h2, h3, h4, h5').forEach((el) => {
+    const observer = new ResizeObserver((entries) => {
+      const h = entries[0].contentRect.height;
+      console.log(el.textContent, h);
+      const rel = document.querySelector(':root');
+      let minh = rel.style.getPropertyValue(`--${el.tagName}-max-height`);
+      minh = minh.length > 0 ? minh.slice(0, minh.indexOf('px')) : '0';
+      // console.log('minh: ', minh);
+      let prev = rel.style.getPropertyValue(`--${el.tagName}-cur-height`);
+      prev = prev.length > 0 ? prev.slice(0, prev.indexOf('px')) : '0';
+      let decreased = false;
+      try {
+        prev = Number(prev);
+        if (h < prev) {
+          decreased = true;
+        }
+        if (decreased && h < 65) {
+          console.log('unobserve ', el.textContent);
+          // observer.unobserve(el);
+        } else {
+          rel.style.setProperty(`--${el.tagName}-cur-height`, `${Math.max(prev * 1.1, h)}px`);
+        }
+      } catch (e) {
+        //
+      }
+      // rel.style.setProperty(`--${el.tagName}-prev-height`, `${minh}px`);
+    });
+    observer.observe(el);
+
     parser.applyElement(el);
   });
 

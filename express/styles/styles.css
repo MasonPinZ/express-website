@@ -59,6 +59,8 @@
   --heading-font-size-l: 2.25rem; /* 36px */
   --heading-font-size-m: 1.75rem; /* 28px */
   --heading-font-size-s: 1.375rem; /* 22px */
+
+  --H1-max-height: 65px;
 }
 
 @media (min-width: 900px) {
