@@ -76,17 +76,17 @@ main .columns .column-picture {
 
 main .columns h1{
   /* font-size: var(--heading-font-size-xxl); */
-  font-size: clamp(var(--heading-font-size-s), calc(var(--heading-font-size-xxl) + var(--H1-max-height) * 0.1 - max(var(--H1-cur-height, '0px'), var(--H1-max-height)) * 0.1), var(--heading-font-size-xxl));
+  font-size: clamp(var(--heading-font-size-m), calc(var(--heading-font-size-xxl) + var(--H1-max-height) * 0.1 - max(var(--H1-cur-height, '0px'), var(--H1-max-height)) * 0.1), var(--heading-font-size-xxl));
   line-height: 1.06;
 }
 
 main .columns h1.columns-heading-long {
   /* font-size: var(--heading-font-size-xl); */
-  font-size: clamp(var(--heading-font-size-s), calc(var(--heading-font-size-xl) + var(--H1-max-height) * 0.1 - max(var(--H1-cur-height, '0px'), var(--H1-max-height)) * 0.1), var(--heading-font-size-xl));
+  font-size: clamp(var(--heading-font-size-m), calc(var(--heading-font-size-xl) + var(--H1-max-height) * 0.1 - max(var(--H1-cur-height, '0px'), var(--H1-max-height)) * 0.1), var(--heading-font-size-xl));
 }
 
 main .columns h1.columns-heading-very-long {
-  font-size: clamp(var(--heading-font-size-s), calc(var(--heading-font-size-l) - max(var(--H1-cur-height, '0px'), var(--h1-max-height)) * 0.2), var(--heading-font-size-l));
+  font-size: clamp(var(--heading-font-size-m), calc(var(--heading-font-size-l) - max(var(--H1-cur-height, '0px'), var(--h1-max-height)) * 0.2), var(--heading-font-size-l));
   /* font-size: max(var(--H1-cur-height, '0px'), var(--h1-max-height)); */
 }
 
@@ -98,11 +98,11 @@ main .columns h1.columns-heading-x-long {
 @media (min-width: 1200px) {
   main .columns h1.columns-heading-long {
     /* font-size: var(--heading-font-size-xxl); */
-    font-size: clamp(var(--heading-font-size-s), calc(var(--heading-font-size-xxl) + var(--H1-max-height) * 0.1 - max(var(--H1-cur-height, '0px'), var(--H1-max-height)) * 0.1), var(--heading-font-size-xxl));
+    font-size: clamp(var(--heading-font-size-m), calc(var(--heading-font-size-xxl) + var(--H1-max-height) * 0.1 - max(var(--H1-cur-height, '0px'), var(--H1-max-height)) * 0.1), var(--heading-font-size-xxl));
   }
   main .columns h1.columns-heading-very-long {
     /* font-size: var(--heading-font-size-xl); */
-    font-size: clamp(var(--heading-font-size-s), calc(var(--heading-font-size-l) - max(var(--H1-cur-height, '0px'), var(--h1-max-height)) * 0.2), var(--heading-font-size-l));
+    font-size: clamp(var(--heading-font-size-m), calc(var(--heading-font-size-l) - max(var(--H1-cur-height, '0px'), var(--h1-max-height)) * 0.2), var(--heading-font-size-l));
   }
 
   main .columns h1.columns-heading-x-long {
