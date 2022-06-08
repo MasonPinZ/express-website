@@ -1769,7 +1769,13 @@ async function wordBreakJapanese() {
   // }
   const { loadDefaultJapaneseParser } = await import('./budoux-index-ja.min.js');
   const parser = loadDefaultJapaneseParser();
+  const BalancedWordWrapper = (await import('./bw2.js')).default;
+  const bw2 = new BalancedWordWrapper();
   const prevHeight = {
+    h1: 1,
+    h2: 1,
+  };
+  const prevPrevHeight = {
     h1: 1,
     h2: 1,
   };
@@ -1784,27 +1790,30 @@ async function wordBreakJapanese() {
   const observer = new ResizeObserver((entries) => {
     for (const ent of entries) {
       const h = ent.contentRect.height;
-      console.log('cur-height: ', h);
       const t = ent.target;
       const tagName = t.tagName.toLowerCase();
+      let varChanged = false;
       if (biggestEl[tagName] === null) {
         biggestEl[tagName] = t;
       }
       if (biggestEl[tagName] !== t) {
         if (h < prevHeight[tagName]) {
+          // console.log('not biggest, ignore');
           return;
         } else {
           biggestEl[tagName] = t;
         }
       }
+      console.log('cur-height: ', h, t.textContent);
       let curFontSize = getComputedStyle(t).fontSize;
       curFontSize = curFontSize.slice(0, curFontSize.indexOf('px'));
       curFontSize = parseFloat(curFontSize);
       // curFontSize = Math.round(curFontSize);
       const rel = document.querySelector(':root');
-      if (Math.abs(h - prevHeight[tagName]) > 1) {
+      if (Math.abs(h - prevHeight[tagName]) > 1 && Math.abs(h - prevPrevHeight[tagName]) > 1) {
         console.log('update cur height ', tagName);
         rel.style.setProperty(`--${tagName}-cur-height`, `${h}px`);
+        varChanged = true;
       }
       // if (!(h > prevHeight && curFontSize > prevFontSize)) {
       console.log('prev-font: ', tagName, prevFontSize[tagName]);
@@ -1813,8 +1822,25 @@ async function wordBreakJapanese() {
         console.log('update cur font', tagName);
         rel.style.setProperty(`--${tagName}-cur-font-size`, `${curFontSize}px`);
         prevFontSize[tagName] = curFontSize;
+        varChanged = true;
       }
+      prevPrevHeight[tagName] = prevHeight[tagName];
       prevHeight[tagName] = h;
+      if (!varChanged) {
+        console.log('font adjustment completed: ', tagName);
+        document.querySelectorAll(tagName).forEach((el) => {
+          // apply balanced word wrap to headings
+          if (typeof window.requestIdleCallback === 'function') {
+            window.requestIdleCallback(() => {
+              bw2.applyElement(el);
+            });
+          } else {
+            window.setTimeout(() => {
+              bw2.applyElement(el);
+            }, 1000);
+          }
+        });
+      }
     }
   });
   document.querySelectorAll('h1, h2').forEach((el) => {
@@ -1824,8 +1850,6 @@ async function wordBreakJapanese() {
     parser.applyElement(el);
   });
 
-  const BalancedWordWrapper = (await import('./bw2.js')).default;
-  const bw2 = new BalancedWordWrapper();
   document.querySelectorAll('h1, h2, h3, h4, h5').forEach((el) => {
     // apply balanced word wrap to headings
     if (typeof window.requestIdleCallback === 'function') {

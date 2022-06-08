@@ -379,7 +379,8 @@ main h1 {
 }
 
 main h2 {
-  font-size: var(--heading-font-size-l);
+  /* font-size: var(--heading-font-size-l); */
+  font-size: clamp(var(--heading-font-size-m), var(--h2-dynamic-font-size), var(--heading-font-size-l));
 }
 
 main h3 {
@@ -421,7 +422,8 @@ main .section-wrapper:last-of-type {
 @media (min-width:600px) {
 
   main h2 {
-    font-size: var(--heading-font-size-l);
+    /* font-size: var(--heading-font-size-l); */
+    font-size: clamp(var(--heading-font-size-m), var(--h2-dynamic-font-size), var(--heading-font-size-l));
     text-align: center;
   }
 
