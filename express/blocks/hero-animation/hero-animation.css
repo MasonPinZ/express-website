@@ -168,7 +168,7 @@ main .hero-animation .hero-animation-overlay p.button-container a.button:any-lin
 
     main .hero-animation h1 {
         /* font-size: var(--heading-font-size-xxl); */
-        font-size: clamp(var(--heading-font-size-m), calc(var(--heading-font-size-xxl) + var(--H1-max-height) * 0.1 - max(var(--H1-cur-height, '0px'), var(--H1-max-height)) * 0.1), var(--heading-font-size-xxl));
+        font-size: clamp(var(--heading-font-size-m), var(--h1-dynamic-font-size), var(--heading-font-size-xxl));
     }
 
     main .hero-animation .hero-animation-attribution.hero-animation-top-right {

@@ -76,53 +76,89 @@ main .columns .column-picture {
 
 main .columns h1{
   /* font-size: var(--heading-font-size-xxl); */
-  font-size: clamp(var(--heading-font-size-m), calc(var(--heading-font-size-xxl) + var(--H1-max-height) * 0.1 - max(var(--H1-cur-height, '0px'), var(--H1-max-height)) * 0.1), var(--heading-font-size-xxl));
+  font-size: clamp(var(--heading-font-size-m), var(--h1-dynamic-font-size), var(--heading-font-size-xxl));
   line-height: 1.06;
 }
 
 main .columns h1.columns-heading-long {
   /* font-size: var(--heading-font-size-xl); */
-  font-size: clamp(var(--heading-font-size-m), calc(var(--heading-font-size-xl) + var(--H1-max-height) * 0.1 - max(var(--H1-cur-height, '0px'), var(--H1-max-height)) * 0.1), var(--heading-font-size-xl));
+  font-size: clamp(var(--heading-font-size-m), var(--h1-dynamic-font-size), var(--heading-font-size-xxl));
 }
 
 main .columns h1.columns-heading-very-long {
-  font-size: clamp(var(--heading-font-size-m), calc(var(--heading-font-size-l) - max(var(--H1-cur-height, '0px'), var(--h1-max-height)) * 0.2), var(--heading-font-size-l));
-  /* font-size: max(var(--H1-cur-height, '0px'), var(--h1-max-height)); */
+  font-size: clamp(var(--heading-font-size-m), var(--h1-dynamic-font-size), var(--heading-font-size-xxl));
+  /* font-size: max(var(--h1-cur-height, '0px'), var(--h1-max-height)); */
 }
 
 main .columns h1.columns-heading-x-long {
   /* font-size: var(--heading-font-size-m); */
-  font-size: clamp(var(--heading-font-size-s), calc(var(--heading-font-size-m) - max(var(--H1-cur-height, '0px'), var(--h1-max-height)) * 0.2), var(--heading-font-size-m));
+  font-size: clamp(var(--heading-font-size-m), var(--h1-dynamic-font-size), var(--heading-font-size-xxl));
 }
 
 @media (min-width: 1200px) {
   main .columns h1.columns-heading-long {
     /* font-size: var(--heading-font-size-xxl); */
-    font-size: clamp(var(--heading-font-size-m), calc(var(--heading-font-size-xxl) + var(--H1-max-height) * 0.1 - max(var(--H1-cur-height, '0px'), var(--H1-max-height)) * 0.1), var(--heading-font-size-xxl));
+    font-size: clamp(var(--heading-font-size-m), var(--h1-dynamic-font-size), var(--heading-font-size-xxl));
   }
   main .columns h1.columns-heading-very-long {
     /* font-size: var(--heading-font-size-xl); */
-    font-size: clamp(var(--heading-font-size-m), calc(var(--heading-font-size-l) - max(var(--H1-cur-height, '0px'), var(--h1-max-height)) * 0.2), var(--heading-font-size-l));
+    font-size: clamp(var(--heading-font-size-m), var(--h1-dynamic-font-size), var(--heading-font-size-xxl));
   }
 
   main .columns h1.columns-heading-x-long {
     /* font-size: var(--heading-font-size-l); */
-    font-size: clamp(var(--heading-font-size-s), calc(var(--heading-font-size-m) - max(var(--H1-cur-height, '0px'), var(--h1-max-height)) * 0.2), var(--heading-font-size-m));
+    font-size: clamp(var(--heading-font-size-m), var(--h1-dynamic-font-size), var(--heading-font-size-xxl));
   }
 }
 
 main .columns h2 {
-  font-size: var(--heading-font-size-xl);
+  /* font-size: var(--heading-font-size-xl); */
+  font-size: clamp(var(--heading-font-size-m), var(--h2-dynamic-font-size), var(--heading-font-size-xl));
   line-height: 1.08;
 }
 
+main .columns h2.columns-heading-long {
+  /* font-size: var(--heading-font-size-l); */
+  font-size: clamp(var(--heading-font-size-m), var(--h2-dynamic-font-size), var(--heading-font-size-xl));
+}
+
 main .columns h2.columns-heading-very-long {
-  font-size: var(--heading-font-size-l);
+  /* font-size: var(--heading-font-size-l); */
+  font-size: clamp(var(--heading-font-size-m), var(--h2-dynamic-font-size), var(--heading-font-size-xl));
+}
+
+@media (max-width: 600px) {
+  :root {
+      --h2-max-height: calc(var(--heading-font-size-xl) * 1); 
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+      --h2-max-height: calc(var(--heading-font-size-xl) * 2); 
+  }
+
+  main .columns h2 {
+    /* font-size: var(--heading-font-size-xl); */
+    font-size: clamp(var(--heading-font-size-s), var(--h2-dynamic-font-size), var(--heading-font-size-xl));
+    line-height: 1.08;
+  }
+  
+  main .columns h2.columns-heading-long {
+    /* font-size: var(--heading-font-size-l); */
+    font-size: clamp(var(--heading-font-size-s), var(--h2-dynamic-font-size), var(--heading-font-size-xl));
+  }
+
+  main .columns h2.columns-heading-very-long {
+    /* font-size: var(--heading-font-size-l); */
+    font-size: clamp(var(--heading-font-size-s), var(--h2-dynamic-font-size), var(--heading-font-size-xl));
+  }
 }
 
 @media (min-width: 1200px) {
   main .columns h2.columns-heading-very-long {
-    font-size: var(--heading-font-size-xl);
+    /* font-size: var(--heading-font-size-xl); */
+    font-size: clamp(var(--heading-font-size-m), var(--h2-dynamic-font-size), var(--heading-font-size-xl));
   }
 }
 

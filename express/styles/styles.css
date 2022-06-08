@@ -60,7 +60,12 @@
   --heading-font-size-m: 1.75rem; /* 28px */
   --heading-font-size-s: 1.375rem; /* 22px */
 
-  --H1-max-height: 65px;
+  --h1-max-height: var(--heading-font-size-xxl);
+  --h1-cur-font-size: var(--heading-font-size-xxl);
+  --h1-dynamic-font-size: calc(var(--h1-cur-font-size, 0px) - (var(--h1-cur-height, 0px) - var(--h1-max-height, 0px)) * 0.1);
+  --h2-max-height: calc(var(--heading-font-size-xl) * 3);
+  --h2-cur-font-size: var(--heading-font-size-xl);
+  --h2-dynamic-font-size: calc(var(--h2-cur-font-size, 0px) - (var(--h2-cur-height, 0px) - var(--h2-max-height, 0px)) * 0.1);
 }
 
 @media (min-width: 900px) {
@@ -752,11 +757,11 @@ main .template-list-sixcols-container > div {
 }
 
 /* disable budoux on small screens  */
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
   h1.budoux, h2.budoux, h3.budoux, h4.budoux, h5.budoux {
     word-break: normal !important;
   }
-}
+} */
 
 /* Store icons */
 img.icon-apple-store, img.icon-google-store, img.icon-galaxy-store, img.icon-microsoft-store {
